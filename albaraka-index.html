@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Al-Baraka Restaurant — Authentic Flavors Since 1995</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0C0A08;
+      --surface: #161310;
+      --surface2:#1E1A16;
+      --red:     #C0392B;
+      --red-lt:  #E74C3C;
+      --gold:    #D4A843;
+      --gold-lt: #F0C060;
+      --cream:   #F5EDD8;
+      --white:   #FDFAF4;
+      --muted:   #8B7D6B;
+      --border:  #2A2318;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 70px;
+      background: rgba(12,10,8,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-emblem {
+      width: 42px; height: 42px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%; display: grid; place-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--gold); font-weight: 700;
+    }
+    .logo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--white); line-height: 1.1; }
+    .logo-name span { display: block; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 500; letter-spacing: 0.03em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 8px 20px; border-radius: 4px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh; padding-top: 70px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(192,57,43,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(212,168,67,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(192,57,43,0.08) 0%, transparent 40%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 5vw; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 28px;
+    }
+    .hero-tag::before, .hero-tag::after { content: '─'; opacity: 0.5; }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700; line-height: 1.05;
+      margin-bottom: 20px; letter-spacing: -0.01em;
+    }
+    .hero-content h1 em { font-style: italic; color: var(--gold); }
+    .hero-content p {
+      font-size: 1rem; color: var(--muted); line-height: 1.8;
+      max-width: 520px; margin: 0 auto 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: var(--bg);
+      padding: 14px 32px; border-radius: 4px;
+      font-size: 0.875rem; font-weight: 700; letter-spacing: 0.05em;
+      text-decoration: none; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline-gold {
+      border: 1px solid rgba(212,168,67,0.4); color: var(--gold);
+      padding: 14px 32px; border-radius: 4px;
+      font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-outline-gold:hover { border-color: var(--gold); background: rgba(212,168,67,0.08); }
+    .hero-features {
+      display: flex; gap: 48px; justify-content: center;
+      margin-top: 64px; padding-top: 40px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .hf-item { text-align: center; }
+    .hf-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; color: var(--gold); font-weight: 700; line-height: 1;
+    }
+    .hf-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── SECTIONS COMMON ── */
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .eyebrow::before, .eyebrow::after { content: '✦'; font-size: 0.5rem; opacity: 0.6; }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+    }
+    .sec-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.75; max-width: 480px; margin: 12px auto 0; }
+
+    /* ── MENU ── */
+    #menu { padding: 100px 5vw; background: var(--surface); }
+    .menu-tabs {
+      display: flex; gap: 0; justify-content: center;
+      border: 1px solid var(--border); border-radius: 6px;
+      overflow: hidden; margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 12px 24px; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      background: transparent; border: none; color: var(--muted);
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; border-right: 1px solid var(--border);
+    }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn.active { background: var(--gold); color: var(--bg); }
+    .tab-btn:hover:not(.active) { color: var(--gold); background: rgba(212,168,67,0.06); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px; }
+    .menu-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px; background: var(--surface2);
+      border: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .menu-item:hover { background: #232018; }
+    .menu-emoji { font-size: 2rem; min-width: 48px; text-align: center; }
+    .menu-info { flex: 1; }
+    .menu-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+    .menu-info p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .menu-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--gold); font-weight: 700;
+      white-space: nowrap;
+    }
+    .menu-badge {
+      font-size: 0.6rem; padding: 2px 6px; border-radius: 3px;
+      background: var(--red); color: white;
+      font-weight: 700; letter-spacing: 0.05em;
+      display: inline-block; margin-top: 4px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 100px 5vw;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-main-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 48px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .about-main-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+    }
+    .about-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; color: var(--border); font-weight: 700;
+      line-height: 1; margin-bottom: 16px;
+    }
+    .about-since { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .about-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--red); border-radius: 4px;
+      padding: 16px 20px; text-align: center;
+    }
+    .about-float strong { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: white; display: block; }
+    .about-float span { font-size: 0.7rem; color: rgba(255,255,255,0.75); letter-spacing: 0.05em; text-transform: uppercase; }
+    .about-text .eyebrow { justify-content: flex-start; }
+    .about-text .eyebrow::before, .about-text .eyebrow::after { display: none; }
+    .about-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 700;
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 16px; font-size: 0.95rem; }
+    .about-highlights { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .highlight-item { display: flex; align-items: center; gap: 12px; font-size: 0.875rem; }
+    .h-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; min-width: 6px; }
+
+    /* ── GALLERY ── */
+    #gallery { padding: 100px 5vw; background: var(--surface); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 4px;
+    }
+    .gallery-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .gallery-item:hover { transform: scale(1.02); z-index: 2; }
+    .gallery-item.large { grid-column: span 2; grid-row: span 2; font-size: 6rem; }
+    .gallery-item { height: 180px; }
+    .gallery-item.large { height: auto; min-height: 364px; }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,10,8,0.8) 0%, transparent 60%);
+      display: flex; align-items: flex-end; padding: 16px;
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { font-size: 0.78rem; color: var(--cream); letter-spacing: 0.05em; }
+
+    /* ── ORDER FORM ── */
+    #order { padding: 100px 5vw; }
+    .order-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start; }
+    .order-form-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 40px; position: relative; overflow: hidden;
+    }
+    .order-form-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+    }
+    .order-form-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; margin-bottom: 28px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .form-group label { font-size: 0.75rem; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 4px;
+      color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-group select option { background: var(--surface2); }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .order-btn {
+      width: 100%; padding: 14px;
+      background: var(--red); color: white;
+      border: none; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: background 0.2s;
+    }
+    .order-btn:hover { background: var(--red-lt); }
+    .order-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    #order-msg { text-align: center; margin-top: 14px; font-size: 0.875rem; font-weight: 500; }
+    #order-msg.ok { color: #4ade80; }
+    #order-msg.err { color: #f87171; }
+
+    .order-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 16px; }
+    .order-info > p { color: var(--muted); line-height: 1.75; margin-bottom: 32px; font-size: 0.95rem; }
+    .delivery-cards { display: flex; flex-direction: column; gap: 16px; }
+    .d-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .d-icon { font-size: 1.8rem; min-width: 40px; }
+    .d-info strong { font-size: 0.9rem; color: var(--white); display: block; margin-bottom: 3px; }
+    .d-info span { font-size: 0.8rem; color: var(--muted); }
+    .whatsapp-order {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #25D366; color: white;
+      padding: 14px; border-radius: 4px;
+      font-weight: 700; font-size: 0.875rem; letter-spacing: 0.05em;
+      text-decoration: none; margin-top: 20px;
+      text-transform: uppercase; transition: opacity 0.2s;
+    }
+    .whatsapp-order:hover { opacity: 0.88; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 100px 5vw; background: var(--surface); }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 0; }
+    .c-block {
+      background: var(--surface2); padding: 36px 28px;
+      border: 1px solid var(--border); text-align: center;
+      transition: background 0.2s;
+    }
+    .c-block:hover { background: #1a1610; }
+    .c-block-icon { font-size: 2rem; margin-bottom: 16px; }
+    .c-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 10px; color: var(--gold); }
+    .c-block p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+    .c-block a { color: var(--white); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 32px 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); }
+    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      #about { grid-template-columns: 1fr; }
+      .order-wrap { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.large { grid-column: span 2; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .menu-tabs { border-radius: 0; }
+      .tab-btn { padding: 10px 14px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="logo-emblem">AB</div>
+    <div class="logo-name">Al-Baraka <span>Restaurant · Est. 1995</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#order" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Authentic Pakistani Cuisine</div>
+    <h1>Food Made With<br><em>Love & Tradition</em></h1>
+    <p>From sizzling BBQ to rich desi curries, every dish at Al-Baraka is crafted with the finest ingredients and three decades of culinary passion.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-gold">Explore Menu</a>
+      <a href="#order" class="btn-outline-gold">Order Online</a>
+    </div>
+    <div class="hero-features">
+      <div class="hf-item">
+        <div class="hf-num">30+</div>
+        <div class="hf-label">Years serving</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">80+</div>
+        <div class="hf-label">Menu items</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">500+</div>
+        <div class="hf-label">Daily customers</div>
+      </div>
+      <div class="hf-item">
+        <div class="hf-num">4.9★</div>
+        <div class="hf-label">Google rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-header">
+    <div class="eyebrow">What We Serve</div>
+    <h2 class="sec-title">Our Menu</h2>
+    <p class="sec-sub">Fresh ingredients, traditional recipes, generous portions — every single day.</p>
+  </div>
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="showTab('desi')">🍛 Desi</button>
+    <button class="tab-btn" onclick="showTab('bbq')">🔥 BBQ</button>
+    <button class="tab-btn" onclick="showTab('rice')">🍚 Rice & Biryani</button>
+    <button class="tab-btn" onclick="showTab('fastfood')">🍔 Fast Food</button>
+    <button class="tab-btn" onclick="showTab('drinks')">🥤 Drinks</button>
+  </div>
+
+  <!-- DESI -->
+  <div class="menu-panel active" id="tab-desi">
+    <div class="menu-item"><div class="menu-emoji">🍛</div><div class="menu-info"><h4>Chicken Karahi</h4><p>Tender chicken cooked in spiced tomato gravy. Serves 2.</p><span class="menu-badge">BESTSELLER</span></div><div class="menu-price">PKR 850</div></div>
+    <div class="menu-item"><div class="menu-emoji">🥩</div><div class="menu-info"><h4>Mutton Karahi</h4><p>Slow-cooked mutton with fresh ginger and green chillies.</p></div><div class="menu-price">PKR 1,400</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍲</div><div class="menu-info"><h4>Daal Makhani</h4><p>Creamy black lentils slow-simmered overnight with butter.</p></div><div class="menu-price">PKR 350</div></div>
+    <div class="menu-item"><div class="menu-emoji">🥘</div><div class="menu-info"><h4>Nihari</h4><p>Traditional slow-cooked beef shank, served with naan.</p><span class="menu-badge">MORNING SPECIAL</span></div><div class="menu-price">PKR 550</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍗</div><div class="menu-info"><h4>Chicken Handi</h4><p>Rich yogurt-based chicken curry cooked in a clay pot.</p></div><div class="menu-price">PKR 750</div></div>
+    <div class="menu-item"><div class="menu-emoji">🫕</div><div class="menu-info"><h4>Paya Soup</h4><p>Traditional trotters soup with aromatic spices. Serves 1.</p></div><div class="menu-price">PKR 450</div></div>
+  </div>
+
+  <!-- BBQ -->
+  <div class="menu-panel" id="tab-bbq">
+    <div class="menu-item"><div class="menu-emoji">🍢</div><div class="menu-info"><h4>Seekh Kebab</h4><p>Minced beef with fresh herbs, grilled on charcoal. Per dozen.</p><span class="menu-badge">BESTSELLER</span></div><div class="menu-price">PKR 600</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍗</div><div class="menu-info"><h4>Whole BBQ Chicken</h4><p>Marinated overnight, slow-grilled to perfection.</p></div><div class="menu-price">PKR 950</div></div>
+    <div class="menu-item"><div class="menu-emoji">🥩</div><div class="menu-info"><h4>Beef Boti</h4><p>Tender beef chunks marinated in spices and grilled.</p></div><div class="menu-price">PKR 800</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍖</div><div class="menu-info"><h4>Mutton Chops</h4><p>Premium lamb chops grilled with secret spice blend.</p><span class="menu-badge">SPECIAL</span></div><div class="menu-price">PKR 1,200</div></div>
+    <div class="menu-item"><div class="menu-emoji">🌮</div><div class="menu-info"><h4>Reshmi Kebab</h4><p>Silky smooth chicken kebabs with cream and spices.</p></div><div class="menu-price">PKR 700</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍢</div><div class="menu-info"><h4>BBQ Platter</h4><p>Mixed platter: seekh, boti, chops & chicken. Serves 4.</p><span class="menu-badge">FAMILY DEAL</span></div><div class="menu-price">PKR 2,800</div></div>
+  </div>
+
+  <!-- RICE -->
+  <div class="menu-panel" id="tab-rice">
+    <div class="menu-item"><div class="menu-emoji">🍚</div><div class="menu-info"><h4>Chicken Biryani</h4><p>Fragrant basmati rice with tender chicken, raita included.</p><span class="menu-badge">BESTSELLER</span></div><div class="menu-price">PKR 450</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍚</div><div class="menu-info"><h4>Mutton Biryani</h4><p>Slow-dum cooked mutton biryani. Rich, aromatic, indulgent.</p></div><div class="menu-price">PKR 650</div></div>
+    <div class="menu-item"><div class="menu-emoji">🥘</div><div class="menu-info"><h4>Pulao</h4><p>Light and aromatic beef pulao with whole spices.</p></div><div class="menu-price">PKR 400</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍛</div><div class="menu-info"><h4>Biryani Family Deal</h4><p>Large biryani pot with 4 portions. Raita & salad included.</p><span class="menu-badge">FAMILY DEAL</span></div><div class="menu-price">PKR 1,600</div></div>
+  </div>
+
+  <!-- FAST FOOD -->
+  <div class="menu-panel" id="tab-fastfood">
+    <div class="menu-item"><div class="menu-emoji">🍔</div><div class="menu-info"><h4>Zinger Burger</h4><p>Crispy fried chicken fillet with coleslaw and special sauce.</p><span class="menu-badge">BESTSELLER</span></div><div class="menu-price">PKR 350</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍕</div><div class="menu-info"><h4>Beef Burger</h4><p>Juicy beef patty with lettuce, tomato, and cheddar cheese.</p></div><div class="menu-price">PKR 400</div></div>
+    <div class="menu-item"><div class="menu-emoji">🌯</div><div class="menu-info"><h4>Shawarma Roll</h4><p>Chicken or beef shawarma with garlic sauce and pickles.</p></div><div class="menu-price">PKR 280</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍟</div><div class="menu-info"><h4>Loaded Fries</h4><p>Crispy fries topped with cheese sauce and jalapeños.</p></div><div class="menu-price">PKR 250</div></div>
+    <div class="menu-item"><div class="menu-emoji">🌮</div><div class="menu-info"><h4>Club Sandwich</h4><p>Triple-decker with chicken, egg, cheese, and vegetables.</p></div><div class="menu-price">PKR 320</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍔</div><div class="menu-info"><h4>Family Burger Deal</h4><p>4 burgers + 2 large fries + 4 drinks. Best value!</p><span class="menu-badge">FAMILY DEAL</span></div><div class="menu-price">PKR 1,800</div></div>
+  </div>
+
+  <!-- DRINKS -->
+  <div class="menu-panel" id="tab-drinks">
+    <div class="menu-item"><div class="menu-emoji">🥭</div><div class="menu-info"><h4>Mango Lassi</h4><p>Fresh mango blended with chilled yogurt and a hint of cardamom.</p><span class="menu-badge">SEASONAL</span></div><div class="menu-price">PKR 180</div></div>
+    <div class="menu-item"><div class="menu-emoji">🧃</div><div class="menu-info"><h4>Fresh Juice</h4><p>Orange, apple, or mixed fruit. Freshly squeezed daily.</p></div><div class="menu-price">PKR 150</div></div>
+    <div class="menu-item"><div class="menu-emoji">☕</div><div class="menu-info"><h4>Doodh Patti Chai</h4><p>Traditional Pakistani milk tea, strong and perfectly sweet.</p></div><div class="menu-price">PKR 80</div></div>
+    <div class="menu-item"><div class="menu-emoji">🥤</div><div class="menu-info"><h4>Cold Drinks</h4><p>Pepsi, 7Up, Mirinda, Mountain Dew — 500ml bottle.</p></div><div class="menu-price">PKR 100</div></div>
+    <div class="menu-item"><div class="menu-emoji">🍹</div><div class="menu-info"><h4>Rooh Afza Sharbat</h4><p>Chilled rose-flavoured sharbat. Perfect for summer.</p></div><div class="menu-price">PKR 120</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-main-card">
+      <div class="about-year">1995</div>
+      <div class="about-since">Serving Since</div>
+    </div>
+    <div class="about-float">
+      <strong>30+</strong>
+      <span>Years of Taste</span>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="eyebrow">Our Story</div>
+    <h2>Three Decades of Authentic Flavor</h2>
+    <p>Al-Baraka Restaurant was founded in 1995 by Haji Muhammad Barkat, a man who believed that food is more than sustenance — it is love, culture, and memory served on a plate.</p>
+    <p>What started as a small dhaba with five tables has grown into one of Lahore's most beloved restaurants, serving over 500 customers daily across dine-in, takeaway, and delivery.</p>
+    <p>Every recipe has been passed down through the family, refined over generations, and prepared fresh every morning using ingredients sourced from trusted local farms.</p>
+    <div class="about-highlights">
+      <div class="highlight-item"><div class="h-dot"></div>100% Halal — certified and guaranteed</div>
+      <div class="highlight-item"><div class="h-dot"></div>Fresh ingredients sourced daily from local markets</div>
+      <div class="highlight-item"><div class="h-dot"></div>Family recipes unchanged since 1995</div>
+      <div class="highlight-item"><div class="h-dot"></div>Free home delivery within 5km</div>
+      <div class="highlight-item"><div class="h-dot"></div>Private dining available for events & gatherings</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <div class="eyebrow">A Feast for the Eyes</div>
+    <h2 class="sec-title">Our Gallery</h2>
+    <p class="sec-sub">A glimpse into our kitchen, our dishes, and the smiles we serve every day.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item large" style="background: linear-gradient(135deg, #1a0a00, #3d1a00);">
+      🍛
+      <div class="gallery-overlay"><span>Signature Chicken Karahi</span></div>
+    </div>
+    <div class="gallery-item" style="background: linear-gradient(135deg, #0d1a0a, #1a3312);">
+      🔥
+      <div class="gallery-overlay"><span>Live BBQ Station</span></div>
+    </div>
+    <div class="gallery-item" style="background: linear-gradient(135deg, #1a1200, #332400);">
+      🍢
+      <div class="gallery-overlay"><span>Seekh Kebabs</span></div>
+    </div>
+    <div class="gallery-item" style="background: linear-gradient(135deg, #1a0505, #330d0d);">
+      🍚
+      <div class="gallery-overlay"><span>Mutton Biryani</span></div>
+    </div>
+    <div class="gallery-item" style="background: linear-gradient(135deg, #0a0d1a, #151a33);">
+      🍔
+      <div class="gallery-overlay"><span>Zinger Burgers</span></div>
+    </div>
+    <div class="gallery-item" style="background: linear-gradient(135deg, #1a0a10, #33141f);">
+      🥭
+      <div class="gallery-overlay"><span>Fresh Mango Lassi</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order">
+  <div class="section-header">
+    <div class="eyebrow">Delivery & Takeaway</div>
+    <h2 class="sec-title">Place Your Order</h2>
+    <p class="sec-sub">Order online and we'll have it ready within 30–45 minutes.</p>
+  </div>
+  <div class="order-wrap">
+    <div class="order-form-card">
+      <h3>Online Order Form</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="o-name" placeholder="Muhammad Ali"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="o-phone" placeholder="+92 309 6455356"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Order Type</label>
+        <select id="o-type">
+          <option value="">Select type</option>
+          <option>Home Delivery</option>
+          <option>Takeaway / Pickup</option>
+          <option>Dine-In Reservation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Delivery Address (if delivery)</label>
+        <input type="text" id="o-address" placeholder="Street, area, city"/>
+      </div>
+      <div class="form-group">
+        <label>Your Order</label>
+        <textarea id="o-items" placeholder="E.g. 1x Chicken Karahi, 2x Seekh Kebab (dozen), 2x Mango Lassi..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Special Instructions</label>
+        <input type="text" id="o-notes" placeholder="Extra spicy, no onions, etc."/>
+      </div>
+      <button class="order-btn" onclick="placeOrder()">🍽️ Place Order</button>
+      <p id="order-msg"></p>
+    </div>
+    <div class="order-info">
+      <h3>Delivery Information</h3>
+      <p>We deliver fresh, hot food right to your door. Our riders cover a 5km radius from the restaurant.</p>
+      <div class="delivery-cards">
+        <div class="d-card">
+          <div class="d-icon">🛵</div>
+          <div class="d-info">
+            <strong>Free Delivery</strong>
+            <span>Within 5km radius — no minimum order</span>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-icon">⏱️</div>
+          <div class="d-info">
+            <strong>30–45 Minutes</strong>
+            <span>Average delivery time from order confirmation</span>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-icon">💵</div>
+          <div class="d-info">
+            <strong>Cash on Delivery</strong>
+            <span>Pay when your order arrives. No advance payment.</span>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-icon">📞</div>
+          <div class="d-info">
+            <strong>Order by Call / WhatsApp</strong>
+            <span>+92 309 6455356 — available 11 AM to 11 PM</span>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/923096455356?text=Assalam%20o%20Alaikum!%20I%20want%20to%20place%20an%20order." class="whatsapp-order" target="_blank">
+        💬 Order via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="eyebrow">Come Visit Us</div>
+    <h2 class="sec-title">Find Al-Baraka</h2>
+    <p class="sec-sub">Open 7 days a week. Dine-in, takeaway, and delivery available daily.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="c-block">
+      <div class="c-block-icon">📍</div>
+      <h4>Address</h4>
+      <p>Main GT Road, near Fawara Chowk<br>Lahore, Punjab, Pakistan</p>
+    </div>
+    <div class="c-block">
+      <div class="c-block-icon">📞</div>
+      <h4>Phone & WhatsApp</h4>
+      <p><a href="tel:+923096455356">+92 309 6455356</a><br>Available 11:00 AM – 11:00 PM</p>
+    </div>
+    <div class="c-block">
+      <div class="c-block-icon">🕐</div>
+      <h4>Opening Hours</h4>
+      <p>Every Day<br>11:00 AM – 11:30 PM<br><em style="color:var(--gold); font-style:normal; font-size:0.8rem;">Nihari available from 7:00 AM</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Al-Baraka Restaurant</div>
+  <p>&copy; 2025 Al-Baraka Restaurant, Lahore. Built by <a href="#">Qubit Agency</a></p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // 🔧 Replace with your Firebase config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.placeOrder = async function () {
+    const name    = document.getElementById('o-name').value.trim();
+    const phone   = document.getElementById('o-phone').value.trim();
+    const type    = document.getElementById('o-type').value;
+    const address = document.getElementById('o-address').value.trim();
+    const items   = document.getElementById('o-items').value.trim();
+    const notes   = document.getElementById('o-notes').value.trim();
+    const msgEl   = document.getElementById('order-msg');
+    const btn     = document.querySelector('.order-btn');
+
+    if (!name || !phone || !type || !items) {
+      msgEl.textContent = 'Please fill in name, phone, order type, and your order.';
+      msgEl.className = 'err'; return;
+    }
+
+    btn.disabled = true; btn.textContent = 'Placing Order...';
+    try {
+      await addDoc(collection(db, "orders"), {
+        name, phone, orderType: type, address, items, notes,
+        createdAt: serverTimestamp(), status: "new"
+      });
+      msgEl.textContent = '✓ Order received! We will call you within 5 minutes to confirm.';
+      msgEl.className = 'ok';
+      ['o-name','o-phone','o-address','o-items','o-notes'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('o-type').value = '';
+    } catch(e) {
+      msgEl.textContent = 'Something went wrong. Please WhatsApp us directly.';
+      msgEl.className = 'err';
+    } finally {
+      btn.disabled = false; btn.textContent = '🍽️ Place Order';
+    }
+  };
+</script>
+
+</body>
+</html>
